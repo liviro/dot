@@ -1,0 +1,73 @@
+filetype indent plugin on
+syntax enable
+
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+set backspace=indent,start
+set number
+set ruler
+set incsearch
+set ignorecase
+set smartcase
+set hlsearch
+set list
+set listchars=tab:┣━,trail:·
+set undofile
+set noesckeys
+
+set undodir=~/var/vim/undo
+set viewdir=~/var/vim/view
+set viminfo+=n~/var/vim/info
+
+setlocal breakindent showbreak=\ \ ⌊
+
+colorscheme smyck
+set cursorline cursorcolumn
+
+set clipboard=unnamed
+
+hi clear TODO
+hi clear FIXME
+
+hi CursorColumn ctermbg=black
+hi CursorLine ctermbg=black
+hi CursorLineNr ctermfg=yellow ctermbg=black
+hi LineNr ctermbg=black
+
+" set tempfile locations
+set backupdir=~/.vim/tmp/backup//
+set directory=~/.vim/tmp/swap//
+set undodir=~/.vim/tmp/undo//
+" Persistent undo
+set undofile
+set undolevels=50000
+
+" http://stackoverflow.com/questions/235439/vim-80-column-layout-concerns
+set textwidth=119
+set colorcolumn=+1
+
+let NERDTreeIgnore = ['\.class$', 'target']
+
+au BufNewFile,BufRead *.sbt set filetype=scala
+
+au BufRead,BufNewFile *.proto set filetype=proto
+
+let mapleader = " "
+" Delete all trailing whitespaces
+nnoremap <Leader>d :%s/\s\+$<CR>
+nnoremap <Leader>h :nohl<CR>
+nnoremap <Leader>s :%s;^\(\s\+\);\=repeat(' ', len(submatch(0))/2);g<CR>
+noremap q; q:
+noremap q: q;
+noremap ; :
+noremap : ;
+
+vnoremap <Leader>t :!tabulate<CR>
+
+nnoremap <Leader>u :UnusedImports<CR>
+nnoremap <Leader>n :NERDTreeToggle<CR>
+
+runtime macros/matchit.vim
+
+execute pathogen#infect()
